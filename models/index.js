@@ -11,14 +11,18 @@ Product.belongsTo(Category, {
     foreignKey: 'category_id',
   },
 
-  as: 'products_tag'
+  // as: 'products_tag'
 });
 
 // Categories have many Products
 
+Category.hasMany(Product, {
+  foreignKey: 'category_id',
+});
+
 // Products belongToMany Tags (through ProductTag)
 
-Product.belongsToMany(Tags, {
+Product.belongsToMany(Tag, {
   through: {
     model: ProductTag,
     unique: false
@@ -27,7 +31,7 @@ Product.belongsToMany(Tags, {
 
 // Tags belongToMany Products (through ProductTag)
 
-Tag.belongsToMany(Products, {
+Tag.belongsToMany(Product, {
   through: {
     model: ProductTag,
     unique: false
